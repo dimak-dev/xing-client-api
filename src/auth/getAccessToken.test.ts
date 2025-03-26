@@ -14,9 +14,9 @@ describe('getAccessToken', () => {
     const mockBuildGetTokenQueryParams = jest.mocked(buildGetTokenQueryParams, { shallow: true });
 
     const mockParameters: XingGetAccessTokenParameters = {
-        clientId: 'mock-client-id',
-        clientSecret: 'mock-client-secret',
-        redirectUri: 'https://example.com/callback',
+        client_id: 'mock-client-id',
+        client_secret: 'mock-client-secret',
+        redirect_uri: 'https://example.com/callback',
         code: 'mock-code',
     };
 

@@ -4,9 +4,9 @@ import buildGetTokenQueryParams from './buildGetTokenQueryParams';
 describe('buildGetTokenQueryParams', () => {
     it('should build query parameters correctly with valid input', () => {
         const params: XingGetAccessTokenParameters = {
-            clientId: 'test-client-id',
-            clientSecret: 'test-client-secret',
-            redirectUri: 'https://example.com/callback',
+            client_id: 'test-client-id',
+            client_secret: 'test-client-secret',
+            redirect_uri: 'https://example.com/callback',
             code: 'test-authorization-code',
         };
 
@@ -23,9 +23,9 @@ describe('buildGetTokenQueryParams', () => {
 
     it('should encode special characters in the query parameters', () => {
         const params: XingGetAccessTokenParameters = {
-            clientId: 'test client id',
-            clientSecret: 'test+client/secret',
-            redirectUri: 'https://example.com/call?back',
+            client_id: 'test client id',
+            client_secret: 'test+client/secret',
+            redirect_uri: 'https://example.com/call?back',
             code: 'test=code&value',
         };
 

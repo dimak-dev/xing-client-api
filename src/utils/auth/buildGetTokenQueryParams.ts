@@ -8,9 +8,9 @@ import type { XingGetAccessTokenParameters } from 'types/XingGetAccessTokenParam
  */
 export default function buildGetTokenQueryParams(params: XingGetAccessTokenParameters): string {
     return new URLSearchParams({
-        client_id: params.clientId,
-        client_secret: params.clientSecret,
-        redirect_uri: params.redirectUri,
+        client_id: params.client_id,
+        client_secret: params.client_secret,
+        redirect_uri: params.redirect_uri,
         code: params.code,
         grant_type: 'authorization_code',
     }).toString();

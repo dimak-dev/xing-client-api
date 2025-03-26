@@ -9,9 +9,9 @@ import buildGetTokenQueryParams from 'utils/auth/buildGetTokenQueryParams';
  *
  * @param {XingGetAccessTokenParameters} parameters - An object containing the necessary parameters to fetch
  *      the access token.
- * @param {string} parameters.clientId - The client ID issued when the application was registered.
- * @param {string} parameters.clientSecret - The client secret issued when the application was registered.
- * @param {string} parameters.redirectUri - The redirect URI matching the one used during the authorization request.
+ * @param {string} parameters.client_id - The client ID issued when the application was registered.
+ * @param {string} parameters.client_secret - The client secret issued when the application was registered.
+ * @param {string} parameters.redirect_uri - The redirect URI matching the one used during the authorization request.
  * @param {string} parameters.code - The authorization code received from the authorization server.
  *
  * @return {Promise<XingGetAccessTokenResponse>} A promise that resolves with the access token response.
@@ -19,9 +19,9 @@ import buildGetTokenQueryParams from 'utils/auth/buildGetTokenQueryParams';
  * @example
  * // Using .then() and .catch()
  * const parameters: XingGetAccessTokenParameters = {
- *   clientId: 'your-client-id',
- *   clientSecret: 'your-client-secret',
- *   redirectUri: 'https://example.com/callback',
+ *   client_id: 'your-client-id',
+ *   client_secret: 'your-client-secret',
+ *   redirect_uri: 'https://example.com/callback',
  *   code: 'authorization-code',
  * };
  *
@@ -39,9 +39,9 @@ import buildGetTokenQueryParams from 'utils/auth/buildGetTokenQueryParams';
  * async function fetchAccessToken() {
  *   try {
  *     const parameters: XingGetAccessTokenParameters = {
- *       clientId: 'your-client-id',
- *       clientSecret: 'your-client-secret',
- *       redirectUri: 'https://example.com/callback',
+ *       client_id: 'your-client-id',
+ *       client_secret: 'your-client-secret',
+ *       redirect_uri: 'https://example.com/callback',
  *       code: 'authorization-code',
  *     };
  *     const response = await getAccessToken(parameters);

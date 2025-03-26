@@ -11,23 +11,23 @@
  */
 export interface XingGetAccessTokenParameters {
     /**
-     * The client ID provided by Xing.
+     * The client ID obtained during application registration.
      * @example "your-client-id"
      */
-    clientId: string;
+    client_id: string;
 
     /**
-     * The client secret corresponding to the client ID.
+     * The client secret obtained during application registration, corresponding to the client ID.
      * @example "your-client-secret"
      */
-    clientSecret: string;
+    client_secret: string;
 
     /**
      * The redirect URI used during authorization.
      * Must match the one registered in Xing.
      * @example "https://example.com/callback"
      */
-    redirectUri: string;
+    redirect_uri: string;
 
     /**
      * The authorization code received after the user grants permission.

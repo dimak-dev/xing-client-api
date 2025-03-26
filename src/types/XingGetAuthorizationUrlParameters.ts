@@ -6,14 +6,14 @@ export interface XingGetAuthorizationUrlParameters {
      * The client ID obtained during app registration.
      * @example "your-client-id"
      */
-    clientId: string;
+    client_id: string;
 
     /**
      * The URL to which the user will be redirected after authorization.
      * Must match the URL registered with the application.
      * @example "https://your-redirect-uri.com/callback"
      */
-    redirectUri: string;
+    redirect_uri: string;
 
     /**
      * An optional parameter for maintaining state between the request and the callback.

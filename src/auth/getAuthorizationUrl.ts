@@ -10,8 +10,8 @@ import type { XingGetAuthorizationUrlParameters } from 'types/XingGetAuthorizati
  * Note: Although the OAuth 2 specification supports a `scope` parameter, XING OAuth 2 does not use it.
  *
  * @param {XingGetAuthorizationUrlParameters} parameters - Parameters required to build the authorization URL.
- * @param {string} parameters.clientId - The client ID obtained during app registration.
- * @param {string} parameters.redirectUri - The URL to which the user will be redirected after authorization.
+ * @param {string} parameters.client_id - The client ID obtained during app registration.
+ * @param {string} parameters.redirect_uri - The URL to which the user will be redirected after authorization.
  * @param {string} [parameters.state] - An optional string to maintain state between the flow and callback.
  *
  * @returns {string} The generated authorization URL.
@@ -19,24 +19,24 @@ import type { XingGetAuthorizationUrlParameters } from 'types/XingGetAuthorizati
  * @example
  * // Example 1: Basic usage
  * const url = getAuthorizationUrl({
- *     clientId: "your-client-id",
- *     redirectUri: "https://your-redirect-uri.com/callback"
+ *     client_id: "your-client-id",
+ *     redirect_uri: "https://your-redirect-uri.com/callback"
  * });
  * console.log(url);
  *
  * @example
  * // Example 2: Providing state
  * const url = getAuthorizationUrl({
- *     clientId: "your-client-id",
- *     redirectUri: "https://your-redirect-uri.com/callback",
+ *     client_id: "your-client-id",
+ *     redirect_uri: "https://your-redirect-uri.com/callback",
  *     state: "random-state-value"
  * });
  * console.log(url);
  */
 export function getAuthorizationUrl(parameters: XingGetAuthorizationUrlParameters): string {
     const url = new URL('https://api.xing.com/auth/oauth2/authorize');
-    url.searchParams.append('client_id', parameters.clientId);
-    url.searchParams.append('redirect_uri', parameters.redirectUri);
+    url.searchParams.append('client_id', parameters.client_id);
+    url.searchParams.append('redirect_uri', parameters.redirect_uri);
     if (parameters.state) url.searchParams.append('state', parameters.state);
 
     return url.toString();

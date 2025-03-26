@@ -14,9 +14,9 @@ describe('refreshAccessToken', () => {
     const mockBuildRefreshTokenQueryParams = jest.mocked(buildRefreshTokenQueryParams, { shallow: true });
 
     const mockParameters: XingRefreshAccessTokenParameters = {
-        clientId: 'mock-client-id',
-        clientSecret: 'mock-client-secret',
-        refreshToken: 'mock-refresh-token',
+        client_id: 'mock-client-id',
+        client_secret: 'mock-client-secret',
+        refresh_token: 'mock-refresh-token',
     };
 
     const mockResponse: XingRefreshAccessTokenResponse = {

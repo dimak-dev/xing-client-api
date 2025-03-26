@@ -4,8 +4,8 @@ import { getAuthorizationUrl } from './getAuthorizationUrl';
 describe('getAuthorizationUrl', () => {
     it('should generate the correct URL with required parameters', () => {
         const params: XingGetAuthorizationUrlParameters = {
-            clientId: 'test-client-id',
-            redirectUri: 'https://test-redirect-uri.com/callback',
+            client_id: 'test-client-id',
+            redirect_uri: 'https://test-redirect-uri.com/callback',
         };
 
         const result = getAuthorizationUrl(params);
@@ -20,8 +20,8 @@ describe('getAuthorizationUrl', () => {
 
     it('should include the optional state parameter if provided', () => {
         const params: XingGetAuthorizationUrlParameters = {
-            clientId: 'test-client-id',
-            redirectUri: 'https://test-redirect-uri.com/callback',
+            client_id: 'test-client-id',
+            redirect_uri: 'https://test-redirect-uri.com/callback',
             state: 'random-state-value',
         };
 
@@ -38,8 +38,8 @@ describe('getAuthorizationUrl', () => {
 
     it('should encode special characters in the redirectUri and state parameters', () => {
         const params: XingGetAuthorizationUrlParameters = {
-            clientId: 'test-client-id',
-            redirectUri: 'https://test-redirect-uri.com/callback?query=value&other=value',
+            client_id: 'test-client-id',
+            redirect_uri: 'https://test-redirect-uri.com/callback?query=value&other=value',
             state: 'state-with-special@characters!',
         };
 

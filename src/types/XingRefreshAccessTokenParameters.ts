@@ -13,17 +13,17 @@ export interface XingRefreshAccessTokenParameters {
      * The client ID provided by Xing.
      * @example "your-client-id"
      */
-    clientId: string;
+    client_id: string;
 
     /**
      * The client secret corresponding to the client ID.
      * @example "your-client-secret"
      */
-    clientSecret: string;
+    client_secret: string;
 
     /**
      * The refresh token issued by Xing, used to obtain a new access token.
      * @example "your-refresh-token"
      */
-    refreshToken: string;
+    refresh_token: string;
 }

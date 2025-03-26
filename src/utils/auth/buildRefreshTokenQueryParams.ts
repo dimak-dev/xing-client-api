@@ -8,9 +8,9 @@ import type { XingRefreshAccessTokenParameters } from 'types/XingRefreshAccessTo
  */
 export default function buildRefreshTokenQueryParams(params: XingRefreshAccessTokenParameters): string {
     return new URLSearchParams({
-        client_id: params.clientId,
-        client_secret: params.clientSecret,
-        refresh_token: params.refreshToken,
+        client_id: params.client_id,
+        client_secret: params.client_secret,
+        refresh_token: params.refresh_token,
         grant_type: 'refresh_token',
     }).toString();
 }

@@ -1,4 +1,4 @@
-import type { XingRefreshAccessTokenParameters } from 'types/XingRefreshAccessTokenParameters';
+import type { XingRefreshAccessTokenParameters } from '../types/XingRefreshAccessTokenParameters';
 
 /**
  * Builds the query parameters string for getting an authorization token.

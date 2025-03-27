@@ -1,13 +1,12 @@
-import type { XingGetAccessTokenParameters } from 'types/XingGetAccessTokenParameters';
-import type { XingGetAccessTokenResponse } from 'types/XingGetAccessTokenResponse';
-
 import sendRequest from 'utils/sendRequest';
-import buildGetTokenQueryParams from 'utils/auth/buildGetTokenQueryParams';
+import buildGetTokenQueryParams from './utils/buildGetTokenQueryParams';
+import type { XingGetAccessTokenParameters } from './types/XingGetAccessTokenParameters';
+import type { XingGetAccessTokenResponse } from './types/XingGetAccessTokenResponse';
 
 import { getAccessToken } from './getAccessToken';
 
 jest.mock('utils/sendRequest');
-jest.mock('utils/auth/buildGetTokenQueryParams');
+jest.mock('./utils/buildGetTokenQueryParams');
 
 describe('getAccessToken', () => {
     const mockSendRequest = jest.mocked(sendRequest, { shallow: true });
@@ -45,9 +44,9 @@ describe('getAccessToken', () => {
 
         expect(mockBuildGetTokenQueryParams)
             .toHaveBeenCalledWith({
-                clientId: 'mock-client-id',
-                clientSecret: 'mock-client-secret',
-                redirectUri: 'https://example.com/callback',
+                client_id: 'mock-client-id',
+                client_secret: 'mock-client-secret',
+                redirect_uri: 'https://example.com/callback',
                 code: 'mock-code',
             });
         expect(mockSendRequest)
@@ -67,9 +66,9 @@ describe('getAccessToken', () => {
             .toThrow('Request failed');
         expect(mockBuildGetTokenQueryParams)
             .toHaveBeenCalledWith({
-                clientId: 'mock-client-id',
-                clientSecret: 'mock-client-secret',
-                redirectUri: 'https://example.com/callback',
+                client_id: 'mock-client-id',
+                client_secret: 'mock-client-secret',
+                redirect_uri: 'https://example.com/callback',
                 code: 'mock-code',
             });
         expect(mockSendRequest)

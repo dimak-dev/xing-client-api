@@ -10,9 +10,6 @@
     "outDir": "dist",
     "baseUrl": "./src",
     "paths": {
-      "types/*": [
-        "types/*"
-      ],
       "utils/*": [
         "utils/*"
       ]

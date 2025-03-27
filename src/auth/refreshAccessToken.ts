@@ -1,8 +1,7 @@
-import type { XingRefreshAccessTokenResponse } from 'types/XingRefreshAccessTokenResponse';
-import type { XingRefreshAccessTokenParameters } from 'types/XingRefreshAccessTokenParameters';
-
-import buildRefreshTokenQueryParams from 'utils/auth/buildRefreshTokenQueryParams';
 import sendRequest from 'utils/sendRequest';
+import buildRefreshTokenQueryParams from './utils/buildRefreshTokenQueryParams';
+import type { XingRefreshAccessTokenResponse } from './types/XingRefreshAccessTokenResponse';
+import type { XingRefreshAccessTokenParameters } from './types/XingRefreshAccessTokenParameters';
 
 /**
  * Refreshes an access token from the Xing API using the provided parameters.

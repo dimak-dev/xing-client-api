@@ -1,4 +1,4 @@
-import { XingGetAccessTokenParameters } from 'types/XingGetAccessTokenParameters';
+import { XingGetAccessTokenParameters } from '../types/XingGetAccessTokenParameters';
 import buildGetTokenQueryParams from './buildGetTokenQueryParams';
 
 describe('buildGetTokenQueryParams', () => {

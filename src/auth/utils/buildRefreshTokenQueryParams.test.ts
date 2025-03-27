@@ -1,4 +1,4 @@
-import type { XingRefreshAccessTokenParameters } from 'types/XingRefreshAccessTokenParameters';
+import type { XingRefreshAccessTokenParameters } from '../types/XingRefreshAccessTokenParameters';
 
 import buildRefreshTokenQueryParams from './buildRefreshTokenQueryParams';
 

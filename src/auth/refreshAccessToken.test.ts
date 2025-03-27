@@ -1,13 +1,12 @@
-import type { XingRefreshAccessTokenParameters } from 'types/XingRefreshAccessTokenParameters';
-import type { XingRefreshAccessTokenResponse } from 'types/XingRefreshAccessTokenResponse';
-
 import sendRequest from 'utils/sendRequest';
-import buildRefreshTokenQueryParams from 'utils/auth/buildRefreshTokenQueryParams';
+import buildRefreshTokenQueryParams from './utils/buildRefreshTokenQueryParams';
+import type { XingRefreshAccessTokenParameters } from './types/XingRefreshAccessTokenParameters';
+import type { XingRefreshAccessTokenResponse } from './types/XingRefreshAccessTokenResponse';
 
 import { refreshAccessToken } from './refreshAccessToken';
 
 jest.mock('utils/sendRequest');
-jest.mock('utils/auth/buildRefreshTokenQueryParams');
+jest.mock('./utils/buildRefreshTokenQueryParams');
 
 describe('refreshAccessToken', () => {
     const mockSendRequest = jest.mocked(sendRequest, { shallow: true });
@@ -44,9 +43,9 @@ describe('refreshAccessToken', () => {
 
         expect(mockBuildRefreshTokenQueryParams)
             .toHaveBeenCalledWith({
-                clientId: 'mock-client-id',
-                clientSecret: 'mock-client-secret',
-                refreshToken: 'mock-refresh-token',
+                client_id: 'mock-client-id',
+                client_secret: 'mock-client-secret',
+                refresh_token: 'mock-refresh-token',
             });
         expect(mockSendRequest)
             .toHaveBeenCalledWith(
@@ -65,9 +64,9 @@ describe('refreshAccessToken', () => {
             .toThrow('Request failed');
         expect(mockBuildRefreshTokenQueryParams)
             .toHaveBeenCalledWith({
-                clientId: 'mock-client-id',
-                clientSecret: 'mock-client-secret',
-                refreshToken: 'mock-refresh-token',
+                client_id: 'mock-client-id',
+                client_secret: 'mock-client-secret',
+                refresh_token: 'mock-refresh-token',
             });
         expect(mockSendRequest)
             .toHaveBeenCalledWith(

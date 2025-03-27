@@ -1,4 +1,4 @@
-import type { XingGetAccessTokenResponse } from 'types/XingGetAccessTokenResponse';
+import type { XingGetAccessTokenResponse } from './XingGetAccessTokenResponse';
 
 /**
  * Interface representing the response received after refreshing an access token.

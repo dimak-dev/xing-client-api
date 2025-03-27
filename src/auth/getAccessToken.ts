@@ -1,8 +1,7 @@
-import type { XingGetAccessTokenParameters } from 'types/XingGetAccessTokenParameters';
-import type { XingGetAccessTokenResponse } from 'types/XingGetAccessTokenResponse';
-
 import sendRequest from 'utils/sendRequest';
-import buildGetTokenQueryParams from 'utils/auth/buildGetTokenQueryParams';
+import buildGetTokenQueryParams from './utils/buildGetTokenQueryParams';
+import type { XingGetAccessTokenParameters } from './types/XingGetAccessTokenParameters';
+import type { XingGetAccessTokenResponse } from './types/XingGetAccessTokenResponse';
 
 /**
  * Retrieves an access token from the Xing API using the provided parameters.

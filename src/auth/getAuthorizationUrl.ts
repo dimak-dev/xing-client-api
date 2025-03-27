@@ -1,4 +1,4 @@
-import type { XingGetAuthorizationUrlParameters } from 'types/XingGetAuthorizationUrlParameters';
+import type { XingGetAuthorizationUrlParameters } from './types/XingGetAuthorizationUrlParameters';
 
 /**
  * Generates the URL for initiating the Authorization Code grant type flow.

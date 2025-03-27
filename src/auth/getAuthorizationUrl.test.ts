@@ -1,4 +1,4 @@
-import type { XingGetAuthorizationUrlParameters } from 'types/XingGetAuthorizationUrlParameters';
+import type { XingGetAuthorizationUrlParameters } from './types/XingGetAuthorizationUrlParameters';
 import { getAuthorizationUrl } from './getAuthorizationUrl';
 
 describe('getAuthorizationUrl', () => {

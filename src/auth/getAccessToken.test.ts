@@ -1,11 +1,11 @@
-import sendRequest from 'utils/sendRequest';
+import sendRequest from 'common/utils/sendRequest';
 import buildGetTokenQueryParams from './utils/buildGetTokenQueryParams';
 import type { XingGetAccessTokenParameters } from './types/XingGetAccessTokenParameters';
 import type { XingGetAccessTokenResponse } from './types/XingGetAccessTokenResponse';
 
 import { getAccessToken } from './getAccessToken';
 
-jest.mock('utils/sendRequest');
+jest.mock('common/utils/sendRequest');
 jest.mock('./utils/buildGetTokenQueryParams');
 
 describe('getAccessToken', () => {

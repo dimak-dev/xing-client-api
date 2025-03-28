@@ -1,4 +1,4 @@
-import sendRequest from 'utils/sendRequest';
+import sendRequest from 'common/utils/sendRequest';
 import buildRefreshTokenQueryParams from './utils/buildRefreshTokenQueryParams';
 import type { XingRefreshAccessTokenResponse } from './types/XingRefreshAccessTokenResponse';
 import type { XingRefreshAccessTokenParameters } from './types/XingRefreshAccessTokenParameters';

@@ -5,12 +5,12 @@ import { EXingOrderStatus } from './types/EXingOrderStatus';
 
 describe('XingERecruitingApiClient', () => {
     let client: XingERecruitingApiClient;
-    let mockSendRequest: jest.SpyInstance;
+    let mockSendAuthorizedRequest: jest.SpyInstance;
 
     beforeEach(() => {
         client = new XingERecruitingApiClient('mockAccessToken');
-        mockSendRequest = jest.spyOn(client as any, 'sendRequest')
-            .mockImplementation(async () => null);
+        mockSendAuthorizedRequest = jest.spyOn(client as any, 'sendAuthorizedRequest')
+            .mockResolvedValue(null);
     });
 
     afterEach(() => {
@@ -18,6 +18,39 @@ describe('XingERecruitingApiClient', () => {
     });
 
     describe('retrieving orders', () => {
+        it('should call the API with the correct URL', async () => {
+            await client.getOrders();
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith('/vendor/jobs/orders', expect.anything());
+        });
+
+        it('should call the API with provided IDs', async () => {
+            await client.getOrders({ ids: [123] });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { ids: '123' });
+
+            await client.getOrders({ ids: [123, 456] });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { ids: '123,456' });
+        });
+
+        it('should call the API with provided status filter', async () => {
+            await client.getOrders({ status: EXingOrderStatus.ACTIVE });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { status: 'active' });
+        });
+
+        it('should call the API with provided pagination parameter', async () => {
+            await client.getOrders({ page: 2 });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { page: '2' });
+        });
+
         it('should return paginated orders response when called without parameters', async () => {
             const mockResponse: XingERecruitingPaginatedResponse<XingOrder> = {
                 total: 1,
@@ -35,44 +68,18 @@ describe('XingERecruitingApiClient', () => {
                     status: EXingOrderStatus.ACTIVE,
                 }],
             };
-            mockSendRequest.mockResolvedValueOnce(mockResponse);
+            mockSendAuthorizedRequest.mockResolvedValueOnce(mockResponse);
 
             const result = await client.getOrders();
 
             expect(result)
                 .toEqual(mockResponse);
-            expect(mockSendRequest)
+            expect(mockSendAuthorizedRequest)
                 .toHaveBeenCalledWith('/vendor/jobs/orders', {});
         });
 
-        it('should call the API with provided IDs', async () => {
-            await client.getOrders({ ids: [123] });
-
-            expect(mockSendRequest)
-                .toHaveBeenCalledWith('/vendor/jobs/orders', { ids: '123' });
-
-            await client.getOrders({ ids: [123, 456] });
-
-            expect(mockSendRequest)
-                .toHaveBeenCalledWith('/vendor/jobs/orders', { ids: '123,456' });
-        });
-
-        it('should call the API with provided status filter', async () => {
-            await client.getOrders({ status: EXingOrderStatus.ACTIVE });
-
-            expect(mockSendRequest)
-                .toHaveBeenCalledWith('/vendor/jobs/orders', { status: 'active' });
-        });
-
-        it('should call the API with provided pagination parameter', async () => {
-            await client.getOrders({ page: 2 });
-
-            expect(mockSendRequest)
-                .toHaveBeenCalledWith('/vendor/jobs/orders', { page: '2' });
-        });
-
         it('should handle errors gracefully when the API request fails', async () => {
-            mockSendRequest.mockRejectedValueOnce(new Error('Request failed'));
+            mockSendAuthorizedRequest.mockRejectedValueOnce(new Error('Request failed'));
 
             await expect(client.getOrders())
                 .rejects

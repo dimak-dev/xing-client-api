@@ -1,4 +1,4 @@
-import sendRequest from 'utils/sendRequest';
+import sendRequest from 'common/utils/sendRequest';
 import buildGetTokenQueryParams from './utils/buildGetTokenQueryParams';
 import type { XingGetAccessTokenParameters } from './types/XingGetAccessTokenParameters';
 import type { XingGetAccessTokenResponse } from './types/XingGetAccessTokenResponse';

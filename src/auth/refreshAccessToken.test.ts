@@ -1,11 +1,11 @@
-import sendRequest from 'utils/sendRequest';
+import sendRequest from 'common/utils/sendRequest';
 import buildRefreshTokenQueryParams from './utils/buildRefreshTokenQueryParams';
 import type { XingRefreshAccessTokenParameters } from './types/XingRefreshAccessTokenParameters';
 import type { XingRefreshAccessTokenResponse } from './types/XingRefreshAccessTokenResponse';
 
 import { refreshAccessToken } from './refreshAccessToken';
 
-jest.mock('utils/sendRequest');
+jest.mock('common/utils/sendRequest');
 jest.mock('./utils/buildRefreshTokenQueryParams');
 
 describe('refreshAccessToken', () => {

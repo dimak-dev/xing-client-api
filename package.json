@@ -30,6 +30,16 @@
         "types": "./dist/auth.d.ts",
         "default": "./dist/auth.js"
       }
+    },
+    "./e-recruiting": {
+      "import": {
+        "types": "./dist/e-recruiting.d.mts",
+        "default": "./dist/e-recruiting.mjs"
+      },
+      "require": {
+        "types": "./dist/e-recruiting.d.ts",
+        "default": "./dist/e-recruiting.js"
+      }
     }
   },
   "files": [

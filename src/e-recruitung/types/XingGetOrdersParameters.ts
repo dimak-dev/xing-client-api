@@ -4,7 +4,7 @@ import type { EXingOrderStatus } from './EXingOrderStatus';
  * Represents the request structure for fetching Xing orders.
  */
 
-export interface XingGetOrdersRequest {
+export interface XingGetOrdersParameters {
     /**
      * A list of order IDs to filter the results for.
      * If not provided, all orders will be returned.

@@ -86,4 +86,59 @@ describe('XingERecruitingApiClient', () => {
                 .toThrow('Request failed');
         });
     });
+
+    describe('retrieving postings', () => {
+        it('should call the API with the correct URL', async () => {
+            await client.getPostings();
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith('/vendor/jobs/postings', {});
+        });
+
+        it('should call the API with provided IDs', async () => {
+            await client.getPostings({ ids: [123] });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { ids: '123' });
+
+            await client.getPostings({ ids: [123, 456] });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { ids: '123,456' });
+        });
+
+        it('should call the API with provided pagination parameter', async () => {
+            await client.getPostings({ page: 2 });
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), { page: '2' });
+        });
+
+        it('should return paginated postings response when called without parameters', async () => {
+            const mockResponse: XingERecruitingPaginatedResponse<unknown> = {
+                total: 1,
+                current_page: 1,
+                total_pages: 1,
+                collection: [{
+                    id: 1,
+                }],
+            };
+            mockSendAuthorizedRequest.mockResolvedValueOnce(mockResponse);
+
+            const result = await client.getPostings();
+
+            expect(result)
+                .toEqual(mockResponse);
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith('/vendor/jobs/postings', {});
+        });
+
+        it('should handle errors gracefully when the API request fails', async () => {
+            mockSendAuthorizedRequest.mockRejectedValueOnce(new Error('Request failed'));
+
+            await expect(client.getPostings())
+                .rejects
+                .toThrow('Request failed');
+        });
+    });
 });

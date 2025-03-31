@@ -1,7 +1,9 @@
+import XingBaseApiClient from 'common/XingBaseApiClient';
 import type { XingERecruitingPaginatedResponse } from './types/XingERecruitingPaginatedResponse';
 import type { XingOrder } from './types/XingOrder';
-import type { XingGetOrdersRequest } from './types/XingGetOrdersRequest';
-import XingBaseApiClient from '../common/XingBaseApiClient';
+import type { XingGetOrdersParameters } from './types/XingGetOrdersParameters';
+import type { XingGetPostingsParameters } from './types/XingGetPostingsParameters';
+import type { XingPosting } from './types/XingPosting';
 
 /**
  * Client for XING E-Recruiting API.
@@ -10,12 +12,40 @@ import XingBaseApiClient from '../common/XingBaseApiClient';
  * as well as monitoring their status and performance.
  */
 export class XingERecruitingApiClient extends XingBaseApiClient {
-    public async getOrders(request: XingGetOrdersRequest = {}): Promise<XingERecruitingPaginatedResponse<XingOrder>> {
+    /**
+     * Get a paginated list of all orders for which the current oAuth user created postings.
+     *
+     * @param {XingGetOrdersParameters} [parameters]
+     */
+    public async getOrders(
+        {
+            ids,
+            status,
+            page,
+        }: XingGetOrdersParameters = {},
+    ): Promise<XingERecruitingPaginatedResponse<XingOrder>> {
         const params: Record<string, string> = {};
-        if (request.ids && request.ids.length > 0) params.ids = request.ids.join(',');
-        if (request.status) params.status = request.status.toString();
-        if (request.page) params.page = request.page.toString();
+        if (ids && ids.length > 0) params.ids = ids.join(',');
+        if (status) params.status = status.toString();
+        if (page) params.page = page.toString();
 
-        return this.sendAuthorizedRequest('/vendor/jobs/orders', { ...params });
+        return this.sendAuthorizedRequest('/vendor/jobs/orders', params);
+    }
+
+    /**
+     * Get a paginated list of all postings created by the current oAuth user.
+     *
+     * @param {XingGetPostingsParameters} [parameters]
+     */
+    public async getPostings(
+        {
+            page,
+            ids,
+        }: XingGetPostingsParameters = {},
+    ): Promise<XingERecruitingPaginatedResponse<XingPosting>> {
+        const params: Record<string, string> = {};
+        if (ids) params.ids = ids.join(',');
+        if (page) params.page = page.toString();
+        return this.sendAuthorizedRequest('/vendor/jobs/postings', params);
     }
 }

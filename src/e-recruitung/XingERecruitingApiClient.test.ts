@@ -141,4 +141,21 @@ describe('XingERecruitingApiClient', () => {
                 .toThrow('Request failed');
         });
     });
+
+    describe('creating a new job posting', () => {
+        it('should call the API with the correct URL and correct HTTP method, without any query parameters', async () => {
+            await client.createJobPosting({} as any);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith('/vendor/jobs/postings', {}, 'POST', expect.anything());
+        });
+
+        it('should pass the correct data (body) to the API', async () => {
+            const mockedBody = { jobPosting: 'mocked-data' };
+            await client.createJobPosting(mockedBody as any);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), expect.anything(), expect.any(String), mockedBody);
+        });
+    });
 });

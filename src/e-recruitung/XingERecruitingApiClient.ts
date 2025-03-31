@@ -4,6 +4,8 @@ import type { XingOrder } from './types/XingOrder';
 import type { XingGetOrdersParameters } from './types/XingGetOrdersParameters';
 import type { XingGetPostingsParameters } from './types/XingGetPostingsParameters';
 import type { XingPosting } from './types/XingPosting';
+import type { XingCreatePostingRequest } from './types/XingCreatePostingRequest';
+import type { XingCreatePostingResponse } from './types/XingCreatePostingResponse';
 
 /**
  * Client for XING E-Recruiting API.
@@ -47,5 +49,15 @@ export class XingERecruitingApiClient extends XingBaseApiClient {
         if (ids) params.ids = ids.join(',');
         if (page) params.page = page.toString();
         return this.sendAuthorizedRequest('/vendor/jobs/postings', params);
+    }
+
+    /**
+     * Creates a job posting on the Xing platform.
+     *
+     * @param {XingCreatePostingRequest} jobPosting Object containing the details of the job posting to be created.
+     * @return {Promise<XingCreatePostingResponse>} Response object for the created job posting.
+     */
+    public async createJobPosting(jobPosting: XingCreatePostingRequest): Promise<XingCreatePostingResponse> {
+        return this.sendAuthorizedRequest<XingCreatePostingResponse>('/vendor/jobs/postings', {}, 'POST', jobPosting);
     }
 }

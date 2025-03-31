@@ -2,6 +2,7 @@ import { XingERecruitingApiClient } from './XingERecruitingApiClient';
 import type { XingERecruitingPaginatedResponse } from './types/XingERecruitingPaginatedResponse';
 import type { XingOrder } from './types/XingOrder';
 import { EXingOrderStatus } from './types/EXingOrderStatus';
+import type { XingPosting } from './types/XingPosting';
 
 describe('XingERecruitingApiClient', () => {
     let client: XingERecruitingApiClient;
@@ -156,6 +157,74 @@ describe('XingERecruitingApiClient', () => {
 
             expect(mockSendAuthorizedRequest)
                 .toHaveBeenCalledWith(expect.any(String), expect.anything(), expect.any(String), mockedBody);
+        });
+    });
+
+    describe('updating the job posting', () => {
+        it('should call the API with the correct URL and correct HTTP method, without any query parameters', async () => {
+            await client.updateJobPosting(1233, {} as any);
+            await client.updateJobPosting(321, {} as any);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(1, '/vendor/jobs/postings/1233', {}, 'PUT', expect.anything());
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(2, '/vendor/jobs/postings/321', {}, 'PUT', expect.anything());
+        });
+
+        it('should pass the correct data (body) to the API', async () => {
+            const mockedBody = { jobPosting: 'mocked-data' };
+            await client.updateJobPosting(1, mockedBody as any);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenCalledWith(expect.any(String), expect.anything(), expect.any(String), mockedBody);
+        });
+    });
+
+    describe('activate the job posting', () => {
+        it('should call the API with the correct URL and correct HTTP method, without any query parameters', async () => {
+            await client.activatePosting(123);
+            await client.activatePosting({ id: 321 } as XingPosting);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(1, '/vendor/jobs/postings/123/activate', {}, 'PUT');
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(2, '/vendor/jobs/postings/321/activate', {}, 'PUT');
+        });
+    });
+
+    describe('archive the job posting', () => {
+        it('should call the API with the correct URL and correct HTTP method, without any query parameters', async () => {
+            await client.archivePosting(123);
+            await client.archivePosting({ id: 321 } as XingPosting);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(1, '/vendor/jobs/postings/123/archive', {}, 'PUT');
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(2, '/vendor/jobs/postings/321/archive', {}, 'PUT');
+        });
+    });
+
+    describe('deactivate the job posting', () => {
+        it('should call the API with the correct URL and correct HTTP method, without any query parameters', async () => {
+            await client.deactivatePosting(123);
+            await client.deactivatePosting({ id: 321 } as XingPosting);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(1, '/vendor/jobs/postings/123/deactivate', {}, 'PUT');
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(2, '/vendor/jobs/postings/321/deactivate', {}, 'PUT');
+        });
+    });
+
+    describe('delete the job posting', () => {
+        it('should call the API with the correct URL and correct HTTP method, without any query parameters', async () => {
+            await client.deletePosting(123);
+            await client.deletePosting({ id: 321 } as XingPosting);
+
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(1, '/vendor/jobs/postings/123', {}, 'DELETE');
+            expect(mockSendAuthorizedRequest)
+                .toHaveBeenNthCalledWith(2, '/vendor/jobs/postings/321', {}, 'DELETE');
         });
     });
 });

@@ -7,6 +7,7 @@ The `Xing API Client` is a TypeScript/JavaScript module designed to simplify int
 - Generate OAuth 2.0 authorization URLs for implementing Xing authentication.
 - Retrieve access tokens using the authorization code.
 - Refresh access tokens using the refresh token.
+- Create, update, activate, deactivate, archive, and delete job postings via the E-Recruiting API.
 - TypeScript support with full type definitions for parameters and responses.
 
 ---
